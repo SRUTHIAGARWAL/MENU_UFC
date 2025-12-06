@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Udupi Fusion Cafe – Dosa & Idli Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: radial-gradient(circle at top, #111827 0%, #020617 55%, #000000 100%);
+      --board-bg: #020712;
+      --gold: #facc15;
+      --gold-soft: rgba(250, 204, 21, 0.16);
+      --green: #22c55e;
+      --orange: #fb923c;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.35);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.9);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .board {
+      width: 100%;
+      max-width: 1100px;
+      background: radial-gradient(circle at top left, #111827 0, #020617 55%, #000 100%);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(250, 204, 21, 0.7);
+      overflow: hidden;
+      position: relative;
+      padding: 18px 24px 18px;
+    }
+
+    .board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at top left, rgba(148, 163, 184, 0.18) 0, transparent 55%);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    /* HEADER */
+    .header {
+      position: relative;
+      z-index: 1;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.5);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .brand-block {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+.logo-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 22px;
+  background: #000;              /* little black plate behind logo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+  overflow: hidden;             /* keeps logo nicely inside the rounded shape */
+}
+
+/* actual logo image */
+.logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;          /* shows full logo without stretching */
+}
+
+
+    .brand-text h1 {
+      font-family: "Baloo 2", cursive;
+      letter-spacing: 0.08em;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .brand-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .brand-text .sub {
+      font-size: 0.78rem;
+      color: #e5e7eb;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      font-size: 0.72rem;
+      border-radius: 999px;
+      padding: 4px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-muted);
+    }
+
+    .chip.green {
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #bbf7d0;
+      background: rgba(22, 163, 74, 0.2);
+    }
+
+    .chip.gold {
+      border-color: rgba(250, 204, 21, 0.9);
+      color: #fef9c3;
+      background: rgba(250, 204, 21, 0.16);
+    }
+
+    .page-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fde68a;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(250, 204, 21, 0.7);
+    }
+
+    /* NAV */
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-links a.active {
+      border-color: var(--gold);
+      background: rgba(250, 204, 21, 0.12);
+      color: #facc15;
+    }
+
+    /* MENU LAYOUT */
+    .columns {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      .columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section {
+      border-radius: 18px;
+      padding: 10px 14px 12px;
+      background: radial-gradient(circle at top, #020817 0, #020617 40%, #020617 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+
+    .section-title span.icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-soft);
+      font-size: 1rem;
+    }
+
+    .section-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .item-list {
+      list-style: none;
+      font-size: 0.86rem;
+    }
+
+    .item {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .item-name {
+      flex: 1 1 auto;
+      color: #e5e7eb;
+    }
+
+    .dots {
+      flex: 1 0 auto;
+      border-bottom: 1px dotted rgba(75, 85, 99, 0.9);
+      margin: 0 4px;
+      opacity: 0.7;
+    }
+
+    .price {
+      font-weight: 600;
+      color: #facc15;
+      white-space: nowrap;
+    }
+
+    .currency {
+      font-size: 0.82em;
+      opacity: 0.85;
+      margin-right: 1px;
+    }
+
+    .note {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.6);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .footer span.highlight {
+      color: #facc15;
+    }
+    /* ===== MOBILE TWEAKS ===== */
+@media (max-width: 768px) {
+  body {
+    padding: 8px;
+  }
+
+  .board {
+    max-width: 100%;
+    padding: 12px 12px 14px;
+    border-radius: 18px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .brand-block {
+    width: 100%;
+  }
+
+  .brand-text h1 {
+    font-size: 1.4rem;
+  }
+
+  .brand-text p {
+    font-size: 0.8rem;
+  }
+
+  .brand-text .sub {
+    font-size: 0.75rem;
+  }
+
+  .badge-row {
+    gap: 6px;
+  }
+
+  .chip {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav-links a,
+  .page-tag {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+
+  /* columns => single column stack */
+  .columns,
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .section {
+    padding: 8px 10px 10px;
+  }
+
+  .section-title {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+  }
+
+  .item-list {
+    font-size: 0.8rem;
+  }
+
+  .item {
+    flex-wrap: wrap;
+  }
+
+  .item-name {
+    flex-basis: 100%;
+    margin-bottom: 1px;
+  }
+
+  .dots {
+    display: none; /* removes dotted line so text doesn't squish */
+  }
+
+  .price {
+    font-size: 0.8rem;
+  }
+
+  .footer {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 450px) {
+  .logo-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
+  }
+
+  .brand-text h1 {
+    font-size: 1.25rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="board">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand-block">
+       <div class="logo-circle">
+  <img src="udupi-logo.png" alt="Udupi Fusion Cafe logo">
+</div>
+
+        <div class="brand-text">
+          <h1>UDUPI FUSION CAFE</h1>
+          <p>South Indian soul food with a colourful street-food twist.</p>
+          <p class="sub">Unit of Unlock Home Kitchen · Sec-86, Faridabad</p>
+
+          <div class="badge-row">
+            <div class="chip green">💚 100% Veg</div>
+            <div class="chip gold">🌶️ Authentic South Indian</div>
+            <div class="chip">Sai Mandir Road · Faridabad</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <span class="page-tag">Dosa &amp; Idli Menu</span>
+        <a href="menu-snacks.html">Snacks &amp; More</a>
+      </div>
+    </header>
+
+    <!-- MENU COLUMNS -->
+    <main class="columns">
+      <!-- DOSAS & UTTAPPAM -->
+      <section class="section">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="icon">🥞</span>
+            <span>Dosas &amp; Uttappam</span>
+          </div>
+          <div class="section-tag">Udupi Specials</div>
+        </div>
+        <ul class="item-list">
+          <li class="item"><span class="item-name">Ghee Masala Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>120</span></li>
+          <li class="item"><span class="item-name">Ghee Plain Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>100</span></li>
+          <li class="item"><span class="item-name">Ghee Podi Masala Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>145</span></li>
+          <li class="item"><span class="item-name">Ghee Podi Plain Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>120</span></li>
+          <li class="item"><span class="item-name">Ghee Garlic Chutney Masala</span><span class="dots"></span><span class="price"><span class="currency">₹</span>140</span></li>
+          <li class="item"><span class="item-name">Ghee Garlic Plain Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>100</span></li>
+          <li class="item"><span class="item-name">Ghee Bomme Plain Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>100</span></li>
+          <li class="item"><span class="item-name">Ghee Bomme Masala Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>140</span></li>
+          <li class="item"><span class="item-name">Ghee Mysore Masala Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>140</span></li>
+          <li class="item"><span class="item-name">Ghee Cheese Masala Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>150</span></li>
+          <li class="item"><span class="item-name">Ghee Beet Dosa Plain</span><span class="dots"></span><span class="price"><span class="currency">₹</span>120</span></li>
+          <li class="item"><span class="item-name">Ghee Beet Dosa with Masala</span><span class="dots"></span><span class="price"><span class="currency">₹</span>130</span></li>
+          <li class="item"><span class="item-name">Ghee Tomato Uttappam</span><span class="dots"></span><span class="price"><span class="currency">₹</span>130</span></li>
+          <li class="item"><span class="item-name">Ghee Onion Uttappam</span><span class="dots"></span><span class="price"><span class="currency">₹</span>130</span></li>
+          <li class="item"><span class="item-name">Ghee Mix Uttappam</span><span class="dots"></span><span class="price"><span class="currency">₹</span>140</span></li>
+        </ul>
+      </section>
+
+      <!-- IDLI & VADA -->
+      <section class="section">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="icon">🍚</span>
+            <span>Idli &amp; Vada</span>
+          </div>
+          <div class="section-tag">Soft &amp; Crispy</div>
+        </div>
+        <ul class="item-list">
+          <li class="item"><span class="item-name">Idli (2 pcs)</span><span class="dots"></span><span class="price"><span class="currency">₹</span>70</span></li>
+          <li class="item"><span class="item-name">Ghee Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>80</span></li>
+          <li class="item"><span class="item-name">Chilli Podi Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>90</span></li>
+          <li class="item"><span class="item-name">Bomme Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>60</span></li>
+          <li class="item"><span class="item-name">Mini Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>90</span></li>
+          <li class="item"><span class="item-name">Medu Vada (per piece)</span><span class="dots"></span><span class="price"><span class="currency">₹</span>45</span></li>
+        </ul>
+
+        <p class="note">All plates served with traditional sambar &amp; fresh coconut chutneys.</p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span>Good Food · Good Mood · <span class="highlight">Udupi Fusion</span></span>
+      <span>Available on Zomato &amp; Swiggy · Call: 70424 50464</span>
+    </footer>
+  </div>
+</body>
+</html>
