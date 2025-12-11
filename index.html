@@ -363,6 +363,63 @@
   .section {
     padding: 8px 10px 10px;
   }
+  /* grid and column helpers (add only if not already present) */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;       /* spacing between stacked sections */
+}
+
+/* mobile: single column stack */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+  /* Sub-section style for items that belong to a parent section */
+.sub-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(148, 163, 184, 0.18);
+  display: block;
+}
+
+.sub-section .sub-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sub-section .sub-title .icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold-soft);
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+.sub-section .item-list {
+  margin-top: 2px;
+}
+
 
   .section-title {
     font-size: 0.78rem;
@@ -464,34 +521,67 @@
           <li class="item"><span class="item-name">Ghee Set Dosa with Aloo</span><span class="dots"></span><span class="price"><span class="currency">₹</span>130</span></li>
           <li class="item"><span class="item-name">Ghee Tomato Uttappam</span><span class="dots"></span><span class="price"><span class="currency">₹</span>130</span></li>
           <li class="item"><span class="item-name">Ghee Onion Uttappam</span><span class="dots"></span><span class="price"><span class="currency">₹</span>130</span></li>
+          <li class="item"><span class="item-name">Open Dosa</span><span class="dots"></span><span class="price"><span class="currency">₹</span>130</span></li>
           <li class="item"><span class="item-name">Ghee Mix Uttappam</span><span class="dots"></span><span class="price"><span class="currency">₹</span>140</span></li>
+       
         </ul>
       </section>
+<!-- LEFT COLUMN: only Idli & Vada + Add-ons -->
+<div class="left">
+  <!-- IDLI & VADA -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="icon">🍚</span>
+        <span>Idli &amp; Vada</span>
+      </div>
+      <div class="section-tag">Soft &amp; Crispy</div>
+    </div>
 
-      <!-- IDLI & VADA -->
-      <section class="section">
-        <div class="section-header">
-          <div class="section-title">
-            <span class="icon">🍚</span>
-            <span>Idli &amp; Vada</span>
-          </div>
-          <div class="section-tag">Soft &amp; Crispy</div>
-        </div>
-        <ul class="item-list">
-          <li class="item"><span class="item-name">Idli (2 pcs)</span><span class="dots"></span><span class="price"><span class="currency">₹</span>70</span></li>
-          <li class="item"><span class="item-name">Ghee Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>80</span></li>
-          <li class="item"><span class="item-name">Ghee Podi Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>90</span></li>
-          <li class="item"><span class="item-name">Benne Tatte Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>60</span></li>
-          <li class="item"><span class="item-name">Mini Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>90</span></li>
-          <li class="item"><span class="item-name">Medu Vada (per piece)</span><span class="dots"></span><span class="price"><span class="currency">₹</span>45</span></li>
-        </ul>
+    <ul class="item-list">
+      <li class="item"><span class="item-name">Idli (2 pcs)</span><span class="dots"></span><span class="price"><span class="currency">₹</span>70</span></li>
+      <li class="item"><span class="item-name">Ghee Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>80</span></li>
+      <li class="item"><span class="item-name">Ghee Podi Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>90</span></li>
+      <li class="item"><span class="item-name">Benne Tatte Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>60</span></li>
+      <li class="item"><span class="item-name">Mini Idli</span><span class="dots"></span><span class="price"><span class="currency">₹</span>90</span></li>
+      <li class="item"><span class="item-name">Medu Vada (per piece)</span><span class="dots"></span><span class="price"><span class="currency">₹</span>45</span></li>
+    </ul>
 
-        <p class="note">All plates served with traditional sambar &amp; fresh coconut chutneys.</p>
-      </section>
+    <p class="note">All plates served with traditional sambar &amp; fresh coconut chutneys.</p>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="icon">✨</span>
+        <span>Add-ons</span>
+      </div>
+      <div class="section-tag">Extras</div>
+    </div>
+
+    <ul class="item-list">
+      <li class="item"><span class="item-name">Ghee</span><span class="dots"></span><span class="price"><span class="currency">₹</span>20</span></li>
+      <li class="item"><span class="item-name">Butter</span><span class="dots"></span><span class="price"><span class="currency">₹</span>20</span></li>
+      <li class="item"><span class="item-name">Sambar (500ml)</span><span class="dots"></span><span class="price"><span class="currency">₹</span>50</span></li>
+      <li class="item"><span class="item-name">Coconut Chutney (200ml)</span><span class="dots"></span><span class="price"><span class="currency">₹</span>40</span></li>
+    </ul>
+  </section>
+</div>
+
+<!-- RIGHT column goes here (example placeholder) -->
+<div class="right">
+  <!-- other sections (sandwiches, beverages...) -->
+</div>
+
+
+
     </main>
 
     <!-- FOOTER -->
     <footer class="footer">
+      <span class="highlight">We also take bulk orders for gravy, Jain gravy, Chinese items, and samosas.</span>
+
       <span>Good Food · Good Mood · <span class="highlight">Udupi Fusion</span></span>
       <span>Available on Zomato &amp; Swiggy · Call: 70424 50464</span>
     </footer>
